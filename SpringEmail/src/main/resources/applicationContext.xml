@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.autentia.training" />
+
+	<!--#lectura del fichero administrable  -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders">
+			<value>true</value>
+		</property>
+		<property name="locations">
+			<list>
+				<value>classpath:app.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!--#Configuración del servicio de Spring: MailSernder -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  <property name="host" value="${mail.host}"/>
+	  <property name="port" value="${mail.port}"/>
+	  <property name="username" value="${mail.username}"/>
+	  <property name="password" value="${mail.password}"/>
+	  <property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+
+	<!--#Configuración de nuestro servicio:MailService -->
+	<bean id="mailService" class="com.autentia.training.spring.mail.MailServiceImpl">
+	  <property name="active" value="true"/>
+	  <property name="mailSender" ref="mailSender"/>
+	  <property name="from" value="jmsanchez@autentia.com"/>
+	</bean>
+	  
+     <!--#Configuración de nuestro proveedor de mensaje: EmailMessageProvider -->  
+     <bean id="simpleEmailMessageProviderImpl" class="com.autentia.training.spring.mail.SimpleEmailMessageProviderImpl">  
+       <property name="subject" value="${email.subject.trainingConfirmation}"/>  
+       <property name="template" value="classpath:email/trainingConfirmation.html"/>  
+       <property name="inlineFiles">   
+         <map>  
+             <entry>  
+                 <key>  
+                     <value>id001</value>  
+                 </key>  
+                 <value>classpath:generic.css</value>  
+             </entry>  
+             <entry>  
+                 <key>  
+                     <value>id002</value>  
+                 </key>  
+                 <value>classpath:autentia.gif</value>  
+             </entry>  
+         </map>  
+       </property>  
+     </bean>  
+
+	<!--#Configuración de nuestro proveedor de mensaje: EmailMessageProvider -->
+	<bean id="velocityEmailMessageProviderImpl" class="com.autentia.training.spring.mail.VelocityEmailMessageProviderImpl">
+	  <property name="subject" value="${email.subject.trainingConfirmation}"/>
+	  <property name="template" value="email/trainingConfirmation.vm"/>
+	  <property name="inlineFiles"> 
+		<map>
+			<entry>
+				<key>
+					<value>id001</value>
+				</key>
+				<value>classpath:generic.css</value>
+			</entry>
+			<entry>
+				<key>
+					<value>id002</value>
+				</key>
+				<value>classpath:autentia.gif</value>
+			</entry>
+		</map>
+	  </property>
+	</bean>
+	
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<value>
+				resource.loader=class
+				class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+				dateToolAttribute=org.apache.velocity.tools.generic.DateTool
+			</value>
+		</property>
+	</bean>
+</beans>

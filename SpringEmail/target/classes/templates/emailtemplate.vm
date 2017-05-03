@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
+<style type="text/css" media="all">
+ @import url(cid:id001);
+</style>
+<style>
+p.normal {
+    font-style: normal;
+    
+}
+
+p.italic {
+    font-style: italic;
+}
+
+p.oblique {
+    font-style: oblique;
+    font-size: 75%;
+}
+</style>
+</head>
+	<body>
+	<div align="center">
+		<h3>Estimado, ${firstName} ${lastName}, recibe un caluroso saludo!</h3>
+		permitenos contante sobre nuestros servicios y productos, adjunto podras ver mas en detalle
+		</div>
+		<div id="header" align="center">
+		<img src="http://mobilpymes.com/images/publicidad-mp.jpg"/>
+	</div>
+		<div>
+   <!--Sending Email Using Spring Smtp Email + Velocity Template from ${location} location.-->
+</div>
+ <footer class="container-fluid text-center">
+    <div align="center" class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+  <p>Para informaci&oacute;n de nuestros servicios puede escribirnos al correo:</p> <a href="mailto:info@mobilpymes.com">info@mobilpymes.com</a>
+  <div align="center">Quito - Ecuador</div>
+  <div align="center">
+  <a href="http://www.mobilpymes.com">Mobilpymes.com</a>
+  </div>
+  <div align="center">
+  <p class="oblique">NOTA : Este es un correo no solicitado, si usted recibe este mensaje por error o si desea ser removido de nuestra lista, por favor env&iacute;e un correo a: publicidad@mobilpymes.com y ser&aacute; removido de la lista. Este correo no puede ser clasificado como SPAM, De acuerdo a la Ley de Comercio Electr&oacute;nico del Ecuador y su Reglamento publicado en el Registro Oficial 735 de 31 de diciembre de 2002,  Decreto No.3496, Art&iacute;culo 22.-</p>
+  </div> 
+</footer>
+	</body>
+	</html>
+
